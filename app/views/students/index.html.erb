@@ -1,0 +1,13 @@
+<h1>Students</h1>
+
+<%= form_with url: import_students_url, method: :post do |form| %>
+  <%= form.file_field :file, accept: ".csv" %>
+  <%= form.button "Import" %>
+<% end %>
+
+
+<p> Students count: <%= Student.count %></p>
+<% @students.each do |student|%>
+  <p>Name : <%= student.name %></p>
+  <p>Phone : <%= student.phone %></p>
+<% end %>

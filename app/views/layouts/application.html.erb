@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Collections</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  </head>
+
+  <body>
+  <p id="notice" style="color: green"><%= notice %></p>
+  <p id="alert" style="color: #B00100"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

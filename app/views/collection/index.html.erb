@@ -1,0 +1,61 @@
+<%= link_to 'Import Data', filter_collection_index_path %>
+<%#= link_to 'Download PDF', index_pdf_collection_index_path(format: :pdf) %>
+<%= button_to 'Delete All', delete_all_collection_index_path, method: :delete, data: { confirm: 'Are you sure you want to delete all records?' }, class: 'btn btn-danger' %>
+
+
+<h3>Collections</h3>
+
+<div class="date_class">
+  <%= form_tag(collection_index_path, method: :get) do %>
+    <label for="code">Member code:</label>
+    <%= text_field_tag 'code', params[:code] %>
+
+    <label for="from_date">From Date:</label>
+    <%= date_field_tag 'from_date', params[:from_date] %>
+
+    <label for="to_date">To Date:</label>
+    <%= date_field_tag 'to_date', params[:to_date] %>
+
+    <%= submit_tag 'Show Details' %>
+  <% end %>
+</div>
+
+
+<% if @collections.present? %>
+  <div style="display: inline-flex; gap: 30px">
+    <p> Name :<strong>  <%= @collections[0].name %> </strong></p>
+    <p> Member Code : <strong><%= @collections[0].code %> </strong></p>
+    <p> Collection count:<strong> <%= @collections.count %></strong></p>
+    <p> Total Amount: <strong> <%= @collections.sum(:amount).round(0) %></strong></p>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Shift</th>
+      <th>Liter</th>
+      <th>Rate</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+
+
+    <% @collections.each do |collection| %>
+      <tr>
+        <td><%= collection.date %></td>
+        <td><%= collection.shift %></td>
+        <td><%= collection.liter %></td>
+        <td><%= collection.rate %></td>
+        <td><%= collection.amount %></td>
+
+      </tr>
+
+    <% end %>
+  </table>
+
+<% end %>
+
+
+
+
